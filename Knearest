@@ -4,7 +4,7 @@ var k = 10; // Define the value of k
 db.Fir.find({ 
     coordinates: { 
         $geoWithin: { 
-            $centerSphere: [[20, 20], 0.0625] 
+            $centerSphere: [[20, 20], 10000000] 
         } 
     } 
 }).limit(k);
