@@ -1,0 +1,26 @@
+db.F ir.aggregate([
+{
+$lookup : {
+f rom : "Static",
+localF ield : "vessel id",
+f oreignF ield : "vessel id",
+as : ”static”
+}
+},
+{
+$unwind : {
+path : "$static",
+preserveN ullAndEmptyArrays : true
+}
+},
+{
+$addF ields : {
+country : ”$static.country”
+}
+},
+{
+$project : {
+static : 0
+}
+}
+])
