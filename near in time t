@@ -11,6 +11,32 @@ db.Fir.aggregate([ { $match: { coordinates: { $geoWithin: { $centerSphere: [cent
 
 
 
+var aggregationPipeline1 = [
+  {
+    $match: {
+      t: { $gte: startTime, $lte: endTime }
+    }
+  }
+];
+
+var aggregationPipeline2 = [
+  {
+    $match: {
+      coordinates: {
+        $geoWithin: {
+          $centerSphere: [center, radius]
+        }
+      }
+    }
+  }
+];
+
+// Combine the two aggregation pipelines
+var combinedPipeline = aggregationPipeline1.concat(aggregationPipeline2);
+
+// Execute the combined aggregation pipeline
+var result = db.Fir.aggregate(combinedPipeline);
+
 
 
 
