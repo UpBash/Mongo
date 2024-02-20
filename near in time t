@@ -35,3 +35,8 @@ var distanceThreshold = X; var startTime = new Date("start timestamp value"); va
 var distanceThreshold = 1000; var startTime = new Date(1507116153000); var endTime = new Date(1507202553000); db.Fir.aggregate([{ $match: { t: { $gte: startTime, $lte: endTime } } }, { $addFields: { distance: { $geoNear: { near: { type: "Point", coordinates: ["$coordinates.lon", "$coordinates.lat"] }, distanceField: "distance", spherical: true } } } }, { $match: { distance: { $lte: distanceThreshold } } }])
 var distanceThreshold = 1000; var startTime = new Date(1507116153000); var endTime = new Date(1507202553000); db.Fir.aggregate([{ $geoNear: { near: { type: "Point", coordinates: [0, 0] }, distanceField: "distance", spherical: true, query: { t: { $gte: startTime, $lte: endTime } } } }, { $match: { distance: { $lte: distanceThreshold } } }])
 var distanceThreshold = 1000; var startTime = new Date(1507116153000); var endTime = new Date(1507202553000); db.Fir.aggregate([{ $match: { t: { $gte: startTime, $lte: endTime } } }, { $addFields: { distance: { $sqrt: { $sum: [{ $pow: [{ $subtract: ["$coordinates.lon", 0] }, 2] }, { $pow: [{ $subtract: ["$coordinates.lat", 0] }, 2] }] } } } }, { $match: { distance: { $lte: distanceThreshold } } }])
+
+
+
+
+var startTime = new Date(1507116153000); var endTime = new Date(1507202553000); db.Fir.aggregate([{ $match: { t: { $gte: startTime, $lte: endTime } } }])
