@@ -37,6 +37,7 @@ var combinedPipeline = aggregationPipeline1.concat(aggregationPipeline2);
 // Execute the combined aggregation pipeline
 var result = db.Fir.aggregate(combinedPipeline);
 
+result
 
 
 
