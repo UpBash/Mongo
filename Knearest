@@ -17,4 +17,4 @@ $limit : K // Limit the result sto 3 nearest ships
 
 db.Fir.aggregate([{ $geoNear: { near: { type: "Point", coordinates: [20, 20] }, distanceField: "distance", spherical: true } }, { $limit: K }])
 
-var centerPoint = [20, 20]; var k = 5; db.Fir.aggregate([{ $geoNear: { near: { type: "Point", coordinates: centerPoint }, distanceField: "distance", spherical: true, num: k } }])
+var centerPoint = [20, 20]; var k = 5; db.Fir.aggregate([{ $geoNear: { near: { type: "Point", coordinates: centerPoint }, distanceField: "distance", spherical: true } }, { $limit: k }])
