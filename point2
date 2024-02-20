@@ -1,0 +1,17 @@
+db.Kinematic_2019_may.aggregate([
+  {
+    $project: {
+      _id: 1,
+      vessel_id: 1,
+      t: 1, // Preserve the 't' field in the projection
+      type: { $literal: "Point" },
+      coordinates: [
+        { $toDouble: "$lon" },
+        { $toDouble: "$lat" }
+      ]
+    }
+  },
+  {
+    $out: "Fir" // Creates a new collection named "Fir"
+  }
+])
