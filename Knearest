@@ -23,3 +23,10 @@ var centerPoint = [20, 20]; var k = 5; db.Fir.aggregate([{ $geoNear: { near: { t
 
 
 var k = 10; db.points.aggregate([{ $geoNear: { near: { type: "Point", coordinates: [21.6650391, 36.5096362] }, distanceField: "dist.calculated", maxDistance: 5000, includeLocs: "dist.location", spherical: true, key: "location" } }, { $limit: k }])
+
+
+
+
+
+
+var centerPoint = [20, 20], radius = 5000, k = 10; db.points.aggregate([{ $geoNear: { near: { type: "Point", coordinates: centerPoint }, distanceField: "dist.calculated", maxDistance: radius, includeLocs: "dist.location", spherical: true } }, { $limit: k }])
