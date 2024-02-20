@@ -30,3 +30,15 @@ var k = 10; db.points.aggregate([{ $geoNear: { near: { type: "Point", coordinate
 
 
 var centerPoint = [20, 20], radius = 5000, k = 10; db.points.aggregate([{ $geoNear: { near: { type: "Point", coordinates: centerPoint }, distanceField: "dist.calculated", maxDistance: radius, includeLocs: "dist.location", spherical: true } }, { $limit: k }])
+
+
+
+
+
+
+
+
+
+
+
+var k = 10; db.Fir.find({ coordinates: { $geoWithin: { $centerSphere: [[20, 20], 0.0625] } } }).limit(k);
