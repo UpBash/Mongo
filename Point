@@ -1,16 +1,17 @@
-db.Kinematic 2019 apr.aggregate([
-{
-$project : {
-id : 1,
-vessel id : 1,
-t : 1, //P reserve the ′t′ f ield in the projection
-type : {$literal : ”P oint”},
-coordinates : [
-{$toDouble : ”$lon”},
-{$toDouble : ”$lat”}
-]
-}
-},
-{
-$out : ”Fir”//Creates a new collection named ”F ir”
-])
+docker exec -it your_mongodb_container_name mongo your_database_name --eval 'db.Kinematic_2019_may.aggregate([
+  {
+    $project: {
+      _id: 1,
+      vessel_id: 1,
+      t: 1, 
+      type: { $literal: "Point" },
+      coordinates: [
+        { $toDouble: "$lon" },
+        { $toDouble: "$lat" }
+      ]
+    }
+  },
+  {
+    $out: "Fir"
+  }
+])'
