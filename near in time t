@@ -45,4 +45,3 @@ var startTime = 1507116153000; var endTime = startTime + (10 * 24 * 60 * 60 * 10
 var startTime = 1507116153000; var endTime = startTime + (10 * 24 * 60 * 60 * 1000); db.Fir.aggregate([{ $match: { t: { $gte: startTime, $lte: endTime } } }])
 #now add the Euclidean distance.
 var startTime = 1507116153000; var endTime = startTime + (10 * 24 * 60 * 60 * 1000); var distanceThreshold = 1000; db.Fir.aggregate([{ $match: { t: { $gte: startTime, $lte: endTime } } }, { $match: { $expr: { $lt: [{ $sqrt: { $sum: [{ $pow: [{ $subtract: ["$coordinates.lon", 0] }, 2] }, { $pow: [{ $subtract: ["$coordinates.lat", 0] }, 2] }] } }, distanceThreshold] } } }])
-
