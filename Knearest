@@ -1,20 +1,25 @@
-db.F ir.aggregate([
-{
-$geoN ear : {
-near : {
-type : ”Point”,
-coordinates : [20, 20]
-},
-distanceField : ”distance”,
-spherical : true
-}
-},
-{
-$limit : K // Limit the result sto 3 nearest ships
-}
+var k = 10; // Define the value of k
+db.points.aggregate([
+  {
+    $geoNear: {
+      near: { type: "Point", coordinates: [21.6650391, 36.5096362] },
+      distanceField: "dist.calculated",
+      maxDistance: 5000,
+      includeLocs: "dist.location",
+      spherical: true,
+      key: "location"
+    }
+  },
+  {
+    $limit: k // Limit the number of results to k
+  }
 ])
+
 
 
 db.Fir.aggregate([{ $geoNear: { near: { type: "Point", coordinates: [20, 20] }, distanceField: "distance", spherical: true } }, { $limit: K }])
 
 var centerPoint = [20, 20]; var k = 5; db.Fir.aggregate([{ $geoNear: { near: { type: "Point", coordinates: centerPoint }, distanceField: "distance", spherical: true } }, { $limit: k }])
+
+
+var k = 10; db.points.aggregate([{ $geoNear: { near: { type: "Point", coordinates: [21.6650391, 36.5096362] }, distanceField: "dist.calculated", maxDistance: 5000, includeLocs: "dist.location", spherical: true, key: "location" } }, { $limit: k }])
