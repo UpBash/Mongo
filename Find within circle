@@ -1,9 +1,9 @@
 db.Fir.find({
   coordinates: {
     $geoWithin: {
-      $centerSphere: [[20, 20], 4] // Radius in radians (4 km converted to radians)
+      $centerSphere: [[20, 20], k]
     }
   }
 })
 
-db.Fir.find({ coordinates: { $geoWithin: { $centerSphere: [[20, 20], 0.0625] } } })
+db.Fir.find({ coordinates: { $geoWithin: { $centerSphere: [[20, 20], 5] } } })
