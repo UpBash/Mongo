@@ -1,0 +1,33 @@
+
+var distanceT hreshold = X;
+var startT ime = newDate(”start timestamp value”);
+var endT ime = newDate(”end timestamp value”);
+db.F ir.aggregate([
+{
+$match : {
+t : {$gte : ”start timestamp value”, $lte : ”end timestamp value”}
+}
+},
+{
+$addF ields : {
+distance : {
+$geoDistance : {
+$geometry : {type : ”P oint”, coordinates : [”$coordinates.lon”, ”$coordinates.lat”]},
+$geometry : {type : ”P oint”, coordinates : [”$coordinates.lon”, ”$coordinates.lat”]},
+spherical : true
+}
+}
+}
+},
+{
+$match : {
+distance : {$lte : X}
+}
+}
+])
+
+
+
+
+
+var distanceThreshold = X; var startTime = new Date("start timestamp value"); var endTime = new Date("end timestamp value"); db.Fir.aggregate([{ $match: { t: { $gte: startTime, $lte: endTime } } }, { $addFields: { distance: { $geoDistance: { $geometry: { type: "Point", coordinates: ["$coordinates.lon", "$coordinates.lat"] }, $geometry: { type: "Point", coordinates: ["$coordinates.lon", "$coordinates.lat"] }, spherical: true } } } }, { $match: { distance: { $lte: X } } }])
