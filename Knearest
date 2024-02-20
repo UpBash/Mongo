@@ -1,0 +1,18 @@
+db.F ir.aggregate([
+{
+$geoN ear : {
+near : {
+type : ”P oint”,
+coordinates : [20, 20]
+},
+distanceF ield : ”distance”,
+spherical : true
+}
+},
+{
+$limit : K // Limit the result sto 3 nearest ships
+}
+])
+
+
+db.Fir.aggregate([{ $geoNear: { near: { type: "Point", coordinates: [20, 20] }, distanceField: "distance", spherical: true } }, { $limit: K }])
