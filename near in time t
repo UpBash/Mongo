@@ -1,8 +1,9 @@
 
+#Set the time range.
+#the 10(first integer on the variable endTime) signifies 10 days. 
 
 
-
-var startTime = 1507116153000; var endTime = startTime + (1000 * 24 * 60 * 60 * 1000); var center = [20, 20]; var radius = 4; 
+var startTime = 1507116153000; var endTime = startTime + (10 * 24 * 60 * 60 * 1000); var center = [20, 20]; var radius = 4; 
 
 #Find ships withing the specified time.
 db.Fir.aggregate([{ $match: { t: { $gte: startTime, $lte: endTime } } }])
