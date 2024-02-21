@@ -31,3 +31,5 @@ static : 0
 db.Fir.aggregate([{ $lookup: { from: "Static", localField: "vessel_id", foreignField: "vessel_id", as: "static" } }, { $unwind: { path: "$static", preserveNullAndEmptyArrays: true } }, { $addFields: { country: "$static.country" } }, { $project: { static: 0 } }, { $out: "Fir" }])
 
 db.Fir.aggregate([{ $lookup: { from: "Static", localField: "vessel_id", foreignField: "vessel_id", as: "static" } }, { $unwind: { path: "$static", preserveNullAndEmptyArrays: true } }, { $addFields: { country: "$static.country" } }, { $project: { static: 0 } }, { $out: "Fir_temp" }]);
+
+db.Static.aggregate([{ $lookup: { from: "Fir", localField: "vessel_id", foreignField: "vessel_id", as: "merged" } }, { $unwind: "$merged" }, { $project: { vessel_id: 1, country: 1, _id: 0 } }, { $out: "MergedCollection" }])
