@@ -1,4 +1,4 @@
-docker exec -it your_mongodb_container_name mongo your_database_name --eval 'db.Kinematic_2019_may.aggregate([
+db.Kinematic_2019_may.aggregate([
   {
     $project: {
       _id: 1,
@@ -14,4 +14,4 @@ docker exec -it your_mongodb_container_name mongo your_database_name --eval 'db.
   {
     $out: "Fir"
   }
-])'
+])
