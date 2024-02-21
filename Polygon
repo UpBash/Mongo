@@ -1,0 +1,14 @@
+#To find the mean of the polygon
+
+db.collection.aggregate([
+  {
+    $unwind: "$coordinates" // Unwind the coordinates array
+  },
+  {
+    $group: {
+      _id: "$_id", // Group by the document id
+      lon: { $avg: "$coordinates.lon" }, // Calculate the average lon within each group
+      lat: { $avg: "$coordinates.lat" }  // Calculate the average lat within each group
+    }
+  }
+])
